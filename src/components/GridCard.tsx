@@ -1,25 +1,8 @@
+import useGames from "../hooks/useGames"
 
 
-import { useEffect, useState } from "react"
-import apiClient from "../services/api-client";
-
-interface Game{
-    id:number,
-    name:string
-}
-interface FetchGamesData{
-    count:number,
-    results:Game[]
-}
 const GridCard = () => {
-    const[games,setGame]=useState<Game[]>([]);
-    const[error,setError]=useState('');
-    useEffect(()=>{
-        apiClient.get<FetchGamesData>('/games').then((res)=>{
-            setGame(res.data.results)
-        })
-        .catch(err=>setError(err.message))
-    },[])
+    const {error,games}=useGames();
   return (
     <div>
       {error && <p>{error}</p>}
