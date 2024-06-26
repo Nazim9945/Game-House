@@ -15,7 +15,7 @@ const GridCard = () => {
     const[games,setGame]=useState<Game[]>([]);
     const[error,setError]=useState('');
     useEffect(()=>{
-        apiClient.get<FetchGamesData>('/xgames').then((res)=>{
+        apiClient.get<FetchGamesData>('/games').then((res)=>{
             setGame(res.data.results)
         })
         .catch(err=>setError(err.message))
