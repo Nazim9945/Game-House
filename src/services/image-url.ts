@@ -1,8 +1,8 @@
-
+import noImage from '../assets/placeholder.png'
 
 
 const croppedUrl = (url:string) => {
-  if(!url) return '';
+  if(!url) return noImage;
 const target='media/'
     const index=url.indexOf(target)+target.length;
    
