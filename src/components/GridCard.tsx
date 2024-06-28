@@ -18,7 +18,7 @@ const GridCard = ({gameQuery}:Props) => {
       <ul>
         <SimpleGrid
           columns={{ sm: 1, md: 2, lg: 3 }}
-          spacing={3}
+          spacing={6}
           padding="10px"
         >
           {isLoading &&
