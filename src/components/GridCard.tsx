@@ -12,7 +12,7 @@ interface Props{
 const GridCard = ({gameQuery}:Props) => {
   const { error, data, isLoading } = useGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6];
-  if(error) return <Text>{error}</Text>
+  if(error) return <Text>{error.message}</Text>
   return (
     <div>
       <ul>
@@ -27,7 +27,7 @@ const GridCard = ({gameQuery}:Props) => {
                 <GameCardSkeleton />
               </GameCardContainer>
             ))}
-          {data.map((game) => (
+          {data?.map((game) => (
             <GameCardContainer key={game.id}>
               <GamesCard game={game} />
             </GameCardContainer>
