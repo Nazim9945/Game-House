@@ -20,7 +20,7 @@ const useGenres=()=>{
       queryKey: ["Genres"],
       queryFn:apiClient.getAll,          
       staleTime: 24 * 60 * 60 * 1000,
-      initialData:result
+      initialData:{count:result.length,results:result,next:null}
     });
 
 }
