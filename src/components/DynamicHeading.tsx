@@ -1,20 +1,22 @@
-import { Heading } from "@chakra-ui/react"
-import { GameQuery } from "../App"
-import useGenres from "../hooks/useGenres"
-import usePlatform from "../hooks/usePlatform"
+import { Heading } from "@chakra-ui/react";
+import useGenres from "../hooks/useGenres";
+import usePlatform from "../hooks/usePlatform";
+import useGameQueryStore from "../GameQueryStore";
 
-interface Props{
-    gameQuery:GameQuery
-}
-const DynamicHeading = ({gameQuery}:Props) => {
-  const {data:genres}=useGenres();  
-  const genre=genres.results.find(g=>g.id===gameQuery.genreId)
+const DynamicHeading = () => {
+  const { data: genres } = useGenres();
+
+  const genreId = useGameQueryStore((s) => s.gameQuery.genreId);
+  const genre = genres.results.find((g) => g.id === genreId);
   const { data: platforms } = usePlatform();
-  const platform = platforms.results.find((g) => g.id === gameQuery.platformId);
-    const heading=`${platform?.name || ''} ${genre?.name || ''} Games`
+  const platformId = useGameQueryStore((s) => s.gameQuery.platformId);
+  const platform = platforms.results.find((g) => g.id === platformId);
+  const heading = `${platform?.name || ""} ${genre?.name || ""} Games`;
   return (
-    <Heading as='h1' marginBottom={5} fontSize='5xl'>{heading}</Heading>
-  )
-}
+    <Heading as="h1" marginBottom={5} fontSize="5xl">
+      {heading}
+    </Heading>
+  );
+};
 
-export default DynamicHeading
+export default DynamicHeading;
