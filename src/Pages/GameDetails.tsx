@@ -3,6 +3,7 @@ import useGame from "../hooks/useGame"
 import { Heading, Spinner } from "@chakra-ui/react";
 import ExpendableText from "../components/ExpendableText";
 import GameTrailer from "../components/GameTrailer";
+import ScreenshotsGame from "../components/ScreenshotsGame";
 
 
 const GameDetails = () => {
@@ -17,6 +18,7 @@ const GameDetails = () => {
     <Heading as={'h1'}>{games?.name}</Heading>
     <ExpendableText>{games.description_raw}</ExpendableText>
     <GameTrailer gameId={games.id}/>
+    <ScreenshotsGame gameId={games.id}/>
     </>
   )
 }
