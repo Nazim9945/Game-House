@@ -26,19 +26,20 @@ const useGames = () => {
   const gameQuery=useGameQueryStore(s=>s.gameQuery)
   return useInfiniteQuery<FetchResponseData<Game>, Error>({
     queryKey: ["games", gameQuery],
-    queryFn: ({pageParam}) =>
+    queryFn: ({ pageParam }) =>
       apiClient.getAll({
         params: {
           genres: gameQuery.genreId,
           parent_platforms: gameQuery.platformId,
           ordering: gameQuery.sortOrder,
           search: gameQuery.searchText,
-          page:pageParam
+          page: pageParam,
         },
       }),
+    staleTime: 24 * 60 * 60 * 1000,
     initialPageParam: 1,
     getNextPageParam: (lastpage, allpage) => {
-      return lastpage.next?allpage.length + 1:undefined;
+      return lastpage.next ? allpage.length + 1 : undefined;
     },
   });
 };
