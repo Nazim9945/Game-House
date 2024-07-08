@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom"
 import useGame from "../hooks/useGame"
-import { Heading, Spinner, Text } from "@chakra-ui/react";
+import { Heading, Spinner } from "@chakra-ui/react";
 import ExpendableText from "../components/ExpendableText";
+import GameTrailer from "../components/GameTrailer";
 
 
 const GameDetails = () => {
@@ -15,6 +16,7 @@ const GameDetails = () => {
     <>
     <Heading as={'h1'}>{games?.name}</Heading>
     <ExpendableText>{games.description_raw}</ExpendableText>
+    <GameTrailer gameId={games.id}/>
     </>
   )
 }
